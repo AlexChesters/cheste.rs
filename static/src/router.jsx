@@ -3,13 +3,13 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 
 import './styles/index.scss'
 
-import Home from './routes/home'
+import Blog001 from './routes/blog/001'
 
 export default function router () {
   return (
     <Router>
       <Switch>
-        <Route exact path='/' component={Home} />
+        <Route path='/blog/001' component={Blog001} />
       </Switch>
     </Router>
   )

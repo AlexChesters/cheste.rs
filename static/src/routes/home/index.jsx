@@ -1,30 +1,28 @@
 import React, { useState, useEffect } from 'react'
 import fetch from 'isomorphic-fetch'
+import ReactMarkdown from 'react-markdown/with-html'
 
 import Example from './components/Example'
 
+import Post from '../../../blog/001-post.md'
+
 const Home = () => {
-  const [data, setData] = useState({})
+  const [source, setSource] = useState()
 
-  async function fetchData () {
-    const res = await fetch('https://www.reddit.com/r/all.json')
-    const data = await res.json()
-    const firstItem = data.data.children[0].data
+  async function fetchSource () {
+    const res = await fetch(Post)
+    const data = await res.text()
 
-    setData({
-      title: firstItem.title,
-      subtitle: firstItem.subreddit_name_prefixed
-    })
+    setSource(data)
   }
 
   useEffect(() => {
-    fetchData()
+    fetchSource()
   }, [])
 
   return (
-    <Example
-      title={data.title}
-      subtitle={data.subtitle}
+    <ReactMarkdown
+      source={source}
     />
   )
 }

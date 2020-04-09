@@ -1,0 +1,6 @@
+@import '../../../styles/colors';
+
+.example {
+  color: map-get($colors, 'text');
+  text-align: center;
+}

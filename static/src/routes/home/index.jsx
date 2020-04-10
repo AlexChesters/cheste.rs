@@ -12,7 +12,7 @@ export default function Home () {
         <p className='subtitle italic'>Senior Software Engineer, BBC iPlayer &amp; Sounds</p>
       </section>
       <section>
-        <p>sasa</p>
+        <p>Lorem ipsum</p>
       </section>
     </PageSkeleton>
   )

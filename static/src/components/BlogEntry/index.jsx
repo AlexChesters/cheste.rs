@@ -3,6 +3,8 @@ import fetch from 'isomorphic-fetch'
 import ReactMarkdown from 'react-markdown/with-html'
 import PropTypes from 'prop-types'
 
+import './index.scss'
+
 const BlogEntry = (props) => {
   const [source, setSource] = useState()
 
@@ -20,7 +22,7 @@ const BlogEntry = (props) => {
   if (!source) return null
 
   return (
-    <section>
+    <section className='blog-entry'>
       <ReactMarkdown
         source={source}
       />

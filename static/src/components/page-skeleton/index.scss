@@ -1,9 +1,17 @@
 .header {
-  width: 100vw;
+  width: 98vw;
 
   .avatar {
     border-radius: 50%;
     width: 5em;
+  }
+
+  .header--item {
+    padding-left: 0.5em;
+
+    &.right-align {
+      float: right;
+    }
   }
 }
 

@@ -8,6 +8,8 @@ const Skeleton = (props) => {
     <div>
       <header className='header'>
         <img className='avatar' src='/assets/img/me.jpg' alt='Image of Alex Chesters' />
+        <a href='/' className='header--item right-align'>Home</a>
+        <a href='/blog' className='header--item right-align'>Blog</a>
       </header>
       <main className='main-content'>
         {props.children}

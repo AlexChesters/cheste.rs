@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 
+import PageSkeleton from '../../components/page-skeleton'
 import BlogEntry from '../../components/blog-entry'
 
 export default function Blog () {
@@ -17,5 +18,11 @@ export default function Blog () {
     fetchPost()
   }, [])
 
-  return post ? <BlogEntry entry={post} /> : null
+  if (!post) return <PageSkeleton />
+
+  return (
+    <PageSkeleton>
+      <BlogEntry entry={post} />
+    </PageSkeleton>
+  )
 }

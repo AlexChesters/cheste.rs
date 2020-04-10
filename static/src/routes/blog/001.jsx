@@ -2,10 +2,8 @@ import React from 'react'
 
 import BlogEntry from '../../components/BlogEntry'
 
-import Post from '../../../blog/001-post.md'
+import Post from '../../../blog/001.md'
 
-const Home = () => {
+export default () => {
   return <BlogEntry entry={Post} />
 }
-
-export default Home

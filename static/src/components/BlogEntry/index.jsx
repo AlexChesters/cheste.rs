@@ -17,11 +17,15 @@ const BlogEntry = (props) => {
     fetchSource()
   }, [])
 
-  return source ? (
-    <ReactMarkdown
-      source={source}
-    />
-  ) : null
+  if (!source) return null
+
+  return (
+    <section>
+      <ReactMarkdown
+        source={source}
+      />
+    </section>
+  )
 }
 
 BlogEntry.propTypes = {

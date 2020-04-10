@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom'
 
 import BlogEntry from '../../components/blog-entry'
 
-export default function foo () {
+export default function Blog () {
   const [post, setPost] = useState(null)
   const { entry } = useParams()
 

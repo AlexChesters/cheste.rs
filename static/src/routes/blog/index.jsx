@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 
-import BlogEntry from '../../components/BlogEntry'
+import BlogEntry from '../../components/blog-entry'
 
 export default function foo () {
   const [post, setPost] = useState(null)

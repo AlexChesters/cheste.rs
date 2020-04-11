@@ -55,6 +55,6 @@ module.exports = {
       }
     }),
     new CopyPlugin([{ from: 'assets', to: 'assets' }]),
-    new FaviconsWebpackPlugin('assets/img/me.jpg'),
+    new FaviconsWebpackPlugin('./assets/img/me.jpg')
   ]
 }

@@ -1,5 +1,27 @@
+@import '../../styles/colors.scss';
+
 .blog-preview {
-  &__table {
-    margin: 0 auto;
+  text-align: center;
+
+  &__list {
+    list-style: none;
+    padding: 0;
+  }
+
+  &__item {
+    text-align: center;
+    font-size: large;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+
+  &__link {
+    color: map-get($map: $colors, $key: black);
+    text-decoration: none;
+    font-weight: bold;
+
+    &:hover {
+      color: map-get($map: $colors, $key: blue);
+    }
   }
 }

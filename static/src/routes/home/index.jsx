@@ -23,9 +23,9 @@ export default function Home () {
 
           I have a passion for full-stack development, with particular
           experience in Amazon Web Services and developing Node.js applications.
-          </p>
+        </p>
       </section>
-      <section class='cv'>
+      <section className='cv'>
         <h1 className='cv__title'>Background</h1>
 
         <h2>Experience</h2>
@@ -40,7 +40,7 @@ export default function Home () {
             <p className='cv__list-item--description'>
               In August 2019 I was promoted to my current position of Senior
               Software Engineer. Whilst continuing to work on the development of
-              the BBC's Connected TV applications, I now also lead the
+              the BBC&apos;s Connected TV applications, I now also lead the
               Continuous Delivery Guild; a cross-discipline community exploring
               the obstacles to Continuous Delivery in BBC iPlayyer &amp; Sounds.
             </p>
@@ -51,7 +51,7 @@ export default function Home () {
             <p className='cv__list-item--description'>
               In September 2017 I was promoted to the role of Software Engineer,
               continuing to work in the division now known as BBC Design &amp;
-              Engineering on the BBC's Connected TV applications.
+              Engineering on the BBC&apos;s Connected TV applications.
             </p>
 
             <p className='cv__list-item--subtitle italic'>
@@ -60,8 +60,8 @@ export default function Home () {
             <p className='cv__list-item--description'>
               In January 2017 I completed my apprenticeship scheme and began the
               role of a Junior Software Engineer; I continued to work in the
-              division now known as BBC Design &amp; Engineering on the BBC's
-              various Connected TV applications.
+              division now known as BBC Design &amp; Engineering on the
+              BBC&apos;s various Connected TV applications.
             </p>
 
             <p className='cv__list-item--subtitle italic'>
@@ -79,6 +79,31 @@ export default function Home () {
           </li>
         </ol>
 
+        <h2>Licenses and Certifications</h2>
+        <ol className='cv__list'>
+          <li className='cv__list-item'>
+            <h1 className='cv__list-item--title'>Mental Health First Aider</h1>
+            <p className='cv__list-item--subtitle italic'>MHFA England</p>
+            <p className='cv__list-item--description'>
+              I am a Mental Health First Aider, qualified in providing first aid
+              to people who may be experiencing mental health issues such as
+              depression, anxiety and psychosis.
+            </p>
+          </li>
+
+          <li className='cv__list-item'>
+            <h1 className='cv__list-item--title'>
+              AWS Certificated Solutions Architect - Associate
+            </h1>
+            <p className='cv__list-item--subtitle italic'>
+              Amazon Web Services
+            </p>
+            <p className='cv__list-item--description'>
+              I am a qualified AWS Solutions Architect at Associate level.
+            </p>
+          </li>
+        </ol>
+
         <h2>Education</h2>
         <ol className='cv__list'>
           <li className='cv__list-item'>
@@ -90,6 +115,7 @@ export default function Home () {
               Level 4 Higher Apprenticeship in IT, Software and Web
             </p>
           </li>
+
           <li className='cv__list-item'>
             <h1 className='cv__list-item--title'>Barrow Hall College</h1>
             <p className='cv__list-item--subtitle italic'>
@@ -100,6 +126,7 @@ export default function Home () {
               and three A2 levels in Applied ICT, Law and Economics.
             </p>
           </li>
+
           <li className='cv__list-item'>
             <h1 className='cv__list-item--title'>Great Sankey High School</h1>
             <p className='cv__list-item--subtitle italic'>

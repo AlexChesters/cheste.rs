@@ -1,3 +1,5 @@
+@import '../../styles/colors.scss';
+
 .header {
   width: 98vw;
 
@@ -6,10 +8,12 @@
     width: 5em;
   }
 
-  .header--item {
+  &__item {
     padding-left: 0.5em;
+    color: map-get($map: $colors, $key: blue);
+    text-decoration: none;
 
-    &.right-align {
+    &--right-aligned {
       float: right;
     }
   }

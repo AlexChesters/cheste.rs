@@ -1,4 +1,10 @@
+@import '../../styles/variables.scss';
+
 .blog-entry {
-  width: 78%;
+  @media screen and (max-width: map-get($map: $variables, $key: break-large)) {
+    width: 80%;
+  }
+
+  width: 60%;
   margin: 0 auto;
 }

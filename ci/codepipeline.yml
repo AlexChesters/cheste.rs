@@ -16,14 +16,14 @@ Parameters:
     Type: String
     Description: IAM Role ARN to be assumed by CodePipeline when executing
     Default: arn:aws:iam::008356366354:role/core-infrastructure-globa-CodePipelineBaseRoleB458-161XPXE39XXUL
-  # TestBucketName:
-  #   Description: Name of the S3 bucket for the test environment
-  #   Type: String
-  #   Default: website-test-bucket-14i4myt91er6s
-  # LiveBucketName:
-  #   Description: Name of the S3 bucket for the live environment
-  #   Type: String
-  #   Default: website-live-bucket-1mdee7sx0lcnp
+  TestBucketName:
+    Description: Name of the S3 bucket for the test environment
+    Type: String
+    Default: personal-website-test-bucket-154blc07pbef4
+  LiveBucketName:
+    Description: Name of the S3 bucket for the live environment
+    Type: String
+    Default: personal-website-live-bucket-7rhkyu04wx9z
 Resources:
   TestCodeBuildRole:
     Type: AWS::IAM::Role
@@ -36,22 +36,22 @@ Resources:
               Service: codebuild.amazonaws.com
       ManagedPolicyArns:
         - !Ref BasePolicyArn
-      # Policies:
-      #   - PolicyName: test-website-codebuild-s3-policy
-      #     PolicyDocument:
-      #       Statement:
-      #         - Action:
-      #             - s3:PutObject
-      #             - s3:PutObjectAcl
-      #             - s3:DeleteObject
-      #           Effect: Allow
-      #           Resource:
-      #             - !Sub "arn:aws:s3:::${TestBucketName}/*"
-      #         - Action:
-      #             - s3:ListBucket
-      #           Effect: Allow
-      #           Resource:
-      #             - !Sub "arn:aws:s3:::${TestBucketName}"
+      Policies:
+        - PolicyName: test-website-codebuild-s3-policy
+          PolicyDocument:
+            Statement:
+              - Action:
+                  - s3:PutObject
+                  - s3:PutObjectAcl
+                  - s3:DeleteObject
+                Effect: Allow
+                Resource:
+                  - !Sub "arn:aws:s3:::${TestBucketName}/*"
+              - Action:
+                  - s3:ListBucket
+                Effect: Allow
+                Resource:
+                  - !Sub "arn:aws:s3:::${TestBucketName}"
 
   TestCodeBuildProject:
     Type: AWS::CodeBuild::Project
@@ -69,16 +69,16 @@ Resources:
         ComputeType: BUILD_GENERAL1_SMALL
         Image: aws/codebuild/standard:3.0
         Type: LINUX_CONTAINER
-        # EnvironmentVariables:
-        #   - Name: BUCKET
-        #     Value: !Ref TestBucketName
-        #     Type: PLAINTEXT
-        #   - Name: ENVIRONMENT
-        #     Value: test
-        #     Type: PLAINTEXT
-        #   - Name: CACHE_MAX_AGE
-        #     Value: "600"
-        #     Type: PLAINTEXT
+        EnvironmentVariables:
+          - Name: BUCKET
+            Value: !Ref TestBucketName
+            Type: PLAINTEXT
+          - Name: ENVIRONMENT
+            Value: test
+            Type: PLAINTEXT
+          - Name: CACHE_MAX_AGE
+            Value: "600"
+            Type: PLAINTEXT
       Name: personal-website-build-and-deploy-test
       ServiceRole: !GetAtt TestCodeBuildRole.Arn
       Source:
@@ -96,22 +96,22 @@ Resources:
               Service: codebuild.amazonaws.com
       ManagedPolicyArns:
         - !Ref BasePolicyArn
-      # Policies:
-      #   - PolicyName: live-website-codebuild-policy
-      #     PolicyDocument:
-      #       Statement:
-      #         - Action:
-      #             - s3:PutObject
-      #             - s3:PutObjectAcl
-      #             - s3:DeleteObject
-      #           Effect: Allow
-      #           Resource:
-      #             - !Sub "arn:aws:s3:::${LiveBucketName}/*"
-      #         - Action:
-      #             - s3:ListBucket
-      #           Effect: Allow
-      #           Resource:
-      #             - !Sub "arn:aws:s3:::${LiveBucketName}"
+      Policies:
+        - PolicyName: live-website-codebuild-policy
+          PolicyDocument:
+            Statement:
+              - Action:
+                  - s3:PutObject
+                  - s3:PutObjectAcl
+                  - s3:DeleteObject
+                Effect: Allow
+                Resource:
+                  - !Sub "arn:aws:s3:::${LiveBucketName}/*"
+              - Action:
+                  - s3:ListBucket
+                Effect: Allow
+                Resource:
+                  - !Sub "arn:aws:s3:::${LiveBucketName}"
 
   LiveCodeBuildProject:
     Type: AWS::CodeBuild::Project
@@ -129,16 +129,16 @@ Resources:
         ComputeType: BUILD_GENERAL1_SMALL
         Image: aws/codebuild/standard:3.0
         Type: LINUX_CONTAINER
-        # EnvironmentVariables:
-        #   - Name: BUCKET
-        #     Value: !Ref LiveBucketName
-        #     Type: PLAINTEXT
-        #   - Name: ENVIRONMENT
-        #     Value: live
-        #     Type: PLAINTEXT
-        #   - Name: CACHE_MAX_AGE
-        #     Value: "3600"
-        #     Type: PLAINTEXT
+        EnvironmentVariables:
+          - Name: BUCKET
+            Value: !Ref LiveBucketName
+            Type: PLAINTEXT
+          - Name: ENVIRONMENT
+            Value: live
+            Type: PLAINTEXT
+          - Name: CACHE_MAX_AGE
+            Value: "3600"
+            Type: PLAINTEXT
       Name: personal-website-build-and-deploy-live
       ServiceRole: !GetAtt LiveCodeBuildRole.Arn
       Source:

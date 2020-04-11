@@ -1,8 +1,9 @@
 import React from 'react'
-import ReactDOMServer from 'react-dom/server'
+import ReactDOM from 'react-dom'
 
 import Router from './router'
 
-document.getElementById('app').innerHTML = ReactDOMServer.renderToStaticMarkup(
-  <Router />
+ReactDOM.render(
+  <Router />,
+  document.getElementById('app')
 )

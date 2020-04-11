@@ -8,7 +8,7 @@ import PageSkeleton from '../../components/page-skeleton'
 
 import './index.scss'
 
-export default function Blog () {
+export default function BlogEntry () {
   const [post, setPost] = useState(null)
   const { entry } = useParams()
 

@@ -30,7 +30,6 @@
 
     &-item--title {
       font-size: large;
-      text-decoration: underline;
       color: map-get($map: $colors, $key: green);
     }
 

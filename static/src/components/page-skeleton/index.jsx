@@ -20,7 +20,7 @@ const Skeleton = (props) => {
 }
 
 Skeleton.propTypes = {
-  children: PropTypes.element
+  children: PropTypes.node
 }
 
 export default Skeleton

@@ -3,6 +3,7 @@ const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const CopyPlugin = require('copy-webpack-plugin')
+const FaviconsWebpackPlugin = require('favicons-webpack-plugin')
 
 module.exports = {
   mode: 'production',
@@ -53,6 +54,7 @@ module.exports = {
         collapseWhitespace: true
       }
     }),
-    new CopyPlugin([{ from: 'assets', to: 'assets' }])
+    new CopyPlugin([{ from: 'assets', to: 'assets' }]),
+    new FaviconsWebpackPlugin('assets/img/me.jpg'),
   ]
 }

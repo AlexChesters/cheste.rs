@@ -37,7 +37,7 @@ Resources:
           - ErrorCachingMinTTL: 0
             ErrorCode: 404
             ResponseCode: 404
-            ResponsePagePath: /404.html
+            ResponsePagePath: /index.html
         DefaultCacheBehavior:
           ForwardedValues:
             QueryString: false

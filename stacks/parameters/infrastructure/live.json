@@ -1,5 +1,7 @@
 {
-  "Parameters": {},
+  "Parameters": {
+    "Domain": "cheste.rs"
+  },
   "Tags": {
     "Project": "personal-website",
     "Environment": "live"

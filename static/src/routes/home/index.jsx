@@ -104,6 +104,15 @@ export default function Home () {
           </li>
         </ol>
 
+        <h2>Accomplishments</h2>
+        <ol className='cv__list'>
+          <li className='cv__list-item'>
+            <h1 className='cv__list-item--title'>
+              BBC Design &amp; Engineering Apprentice of the Year 2016
+            </h1>
+          </li>
+        </ol>
+
         <h2>Education</h2>
         <ol className='cv__list'>
           <li className='cv__list-item'>

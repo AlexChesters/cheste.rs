@@ -1,3 +1,5 @@
+@import '../../styles/colors.scss';
+
 .introduction {
   text-align: center;
 
@@ -12,4 +14,28 @@
   margin: 0 auto;
   padding-top: 1em;
   padding-bottom: 1em;
+}
+
+.cv {
+  width: 55%;
+  margin: 0 auto;
+
+  &__title {
+    text-align: center;
+  }
+
+  &__list {
+    padding: 0;
+    list-style: none;
+
+    &-item--title {
+      font-size: large;
+      text-decoration: underline;
+      color: map-get($map: $colors, $key: green);
+    }
+
+    &-item--subtitle {
+      margin-top: -10px;
+    }
+  }
 }

@@ -10,7 +10,6 @@ const Skeleton = (props) => {
         <img className='avatar' src='/assets/img/me.jpg' alt='Image of Alex Chesters' />
         <a href='mailto:alex@cheste.rs' className='header__item header__item--right-aligned blue'>Email</a>
         <a href='/blog' className='header__item header__item--right-aligned blue'>Blog</a>
-        <a href='/cv' className='header__item header__item--right-aligned blue'>CV</a>
         <a href='/' className='header__item header__item--right-aligned blue'>Home</a>
       </header>
       <main className='main-content'>

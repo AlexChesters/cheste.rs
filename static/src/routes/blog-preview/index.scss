@@ -1,0 +1,15 @@
+@import '../../styles/colors.scss';
+
+.blog-preview {
+  text-align: center;
+
+  & .post__list {
+    &-item--title {
+      color: map-get($map: $colors, $key: green);
+
+      &:hover {
+        color: darken(map-get($map: $colors, $key: green), 15%);
+      }
+    }
+  }
+}

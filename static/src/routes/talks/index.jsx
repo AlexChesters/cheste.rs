@@ -22,7 +22,7 @@ export default function Talks () {
           </p>
           <p>
             The kind folks at AWS asked me to speak about this project at AWS
-            Re:Invent 2019 in Las Vegas, Nevada; if you're interested in reading
+            Re:Invent 2019 in Las Vegas, Nevada; if you&apos;re interested in reading
             more you can view the slides <a href='/assets/slides/net312.pdf'>here</a>.
           </p>
         </section>

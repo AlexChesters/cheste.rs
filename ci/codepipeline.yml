@@ -186,8 +186,8 @@ Resources:
               Configuration:
                 ActionMode: CHANGE_SET_REPLACE
                 Capabilities: CAPABILITY_NAMED_IAM
-                StackName: personal-website-test
-                ChangeSetName: personal-website-change-set-test
+                StackName: website-test
+                ChangeSetName: website-change-set-test
                 RoleArn: !Ref CodePipelineCloudFormationRoleArn
                 TemplatePath: GitHubSource::stacks/infrastructure.yml
                 TemplateConfiguration: GitHubSource::stacks/parameters/infrastructure/test.json
@@ -201,8 +201,8 @@ Resources:
               Configuration:
                 ActionMode: CHANGE_SET_EXECUTE
                 Capabilities: CAPABILITY_NAMED_IAM
-                StackName: personal-website-test
-                ChangeSetName: personal-website-change-set-test
+                StackName: website-test
+                ChangeSetName: website-change-set-test
                 RoleArn: !Ref CodePipelineCloudFormationRoleArn
             - ActionTypeId:
                 Category: Build
@@ -215,6 +215,15 @@ Resources:
               Name: Build-And-Deploy-Website-Content
               Configuration:
                 ProjectName: !Ref "TestCodeBuildProject"
+        - Name: Approval
+          Actions:
+            - ActionTypeId:
+                Category: Approval
+                Owner: AWS
+                Version: "1"
+                Provider: Manual
+              Name: Manual-Approval
+              RunOrder: 1
         - Name: Deploy-To-Live
           Actions:
             - ActionTypeId:
@@ -229,8 +238,8 @@ Resources:
               Configuration:
                 ActionMode: CHANGE_SET_REPLACE
                 Capabilities: CAPABILITY_NAMED_IAM
-                StackName: personal-website-live
-                ChangeSetName: personal-website-change-set-live
+                StackName: website-live
+                ChangeSetName: website-change-set-live
                 RoleArn: !Ref CodePipelineCloudFormationRoleArn
                 TemplatePath: GitHubSource::stacks/infrastructure.yml
                 TemplateConfiguration: GitHubSource::stacks/parameters/infrastructure/live.json
@@ -244,8 +253,8 @@ Resources:
               Configuration:
                 ActionMode: CHANGE_SET_EXECUTE
                 Capabilities: CAPABILITY_NAMED_IAM
-                StackName: personal-website-live
-                ChangeSetName: personal-website-change-set-live
+                StackName: website-live
+                ChangeSetName: website-change-set-live
                 RoleArn: !Ref CodePipelineCloudFormationRoleArn
             - ActionTypeId:
                 Category: Build

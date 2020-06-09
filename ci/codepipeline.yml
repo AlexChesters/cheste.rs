@@ -215,15 +215,6 @@ Resources:
               Name: Build-And-Deploy-Website-Content
               Configuration:
                 ProjectName: !Ref "TestCodeBuildProject"
-        - Name: Approval
-          Actions:
-            - ActionTypeId:
-                Category: Approval
-                Owner: AWS
-                Version: "1"
-                Provider: Manual
-              Name: Manual-Approval
-              RunOrder: 1
         - Name: Deploy-To-Live
           Actions:
             - ActionTypeId:

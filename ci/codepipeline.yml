@@ -168,7 +168,7 @@ Resources:
               Name: Clone-From-GitHub
               Configuration:
                 Owner: AlexChesters
-                Repo: website
+                Repo: cheste.rs
                 Branch: master
                 OAuthToken: "{{resolve:ssm:/Secrets/GitHub-Token:1}}"
                 PollForSourceChanges: false

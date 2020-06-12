@@ -34,7 +34,7 @@ export default function Home () {
             <h1 className='cv__list-item--title' tabIndex={0}>
               British Broadcasting Corporation
             </h1>
-            <p className='cv__list-item--subtitle italic' tabIndex={0}>
+            <p className='cv__list-item--subtitle italic' tabIndex={0} aria-label='Senior Software Engineer (August 2019 to present)'>
               Senior Software Engineer (August 2019 - Present)
             </p>
             <p className='cv__list-item--description' tabIndex={0}>
@@ -45,7 +45,7 @@ export default function Home () {
               the obstacles to Continuous Delivery in BBC iPlayer &amp; Sounds.
             </p>
 
-            <p className='cv__list-item--subtitle italic' tabIndex={0}>
+            <p className='cv__list-item--subtitle italic' tabIndex={0} aria-label='Software Engineer (September 2017 to August 2019)'>
               Software Engineer (September 2017 - August 2019)
             </p>
             <p className='cv__list-item--description' tabIndex={0}>
@@ -54,7 +54,7 @@ export default function Home () {
               Engineering on the BBC&apos;s Connected TV applications.
             </p>
 
-            <p className='cv__list-item--subtitle italic' tabIndex={0}>
+            <p className='cv__list-item--subtitle italic' tabIndex={0} aria-label='Junior Software Engineer (January 2017 to September 2017)'>
               Junior Software Engineer (January 2017 - September 2017)
             </p>
             <p className='cv__list-item--description' tabIndex={0}>
@@ -64,7 +64,7 @@ export default function Home () {
               BBC&apos;s various Connected TV applications.
             </p>
 
-            <p className='cv__list-item--subtitle italic' tabIndex={0}>
+            <p className='cv__list-item--subtitle italic' tabIndex={0} aria-label='Apprentice Software Engineer (September 2014 to January 2017)'>
               Apprentice Software Engineer (September 2014 - January 2017)
             </p>
             <p className='cv__list-item--description' tabIndex={0}>
@@ -117,7 +117,7 @@ export default function Home () {
         <ol className='cv__list'>
           <li className='cv__list-item'>
             <h1 className='cv__list-item--title' tabIndex={0}>The Manchester College</h1>
-            <p className='cv__list-item--subtitle italic' tabIndex={0}>
+            <p className='cv__list-item--subtitle italic' tabIndex={0} aria-label='September 2014 to May 2016'>
               September 2014 - May 2016
             </p>
             <p className='cv__list-item--description' tabIndex={0}>
@@ -127,7 +127,7 @@ export default function Home () {
 
           <li className='cv__list-item'>
             <h1 className='cv__list-item--title' tabIndex={0}>Barrow Hall College</h1>
-            <p className='cv__list-item--subtitle italic' tabIndex={0}>
+            <p className='cv__list-item--subtitle italic' tabIndex={0} aria-label='September 2012 to May 2014'>
               September 2012 - May 2014
             </p>
             <p className='cv__list-item--description' tabIndex={0}>
@@ -138,7 +138,7 @@ export default function Home () {
 
           <li className='cv__list-item'>
             <h1 className='cv__list-item--title' tabIndex={0}>Great Sankey High School</h1>
-            <p className='cv__list-item--subtitle italic' tabIndex={0}>
+            <p className='cv__list-item--subtitle italic' tabIndex={0} aria-label='September 2007 to May 2012'>
               September 2007 - May 2012
             </p>
             <p className='cv__list-item--description' tabIndex={0}>Attained 9 GCSEs.</p>

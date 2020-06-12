@@ -8,6 +8,16 @@ import PageSkeleton from '../../components/page-skeleton'
 
 import './index.scss'
 
+const appendTabIndexToChildren = (element) => {
+  if (!element.children.length) return
+
+  for (let i = 0; i < element.children.length; i++) {
+    const child = element.children[i]
+    child.setAttribute('tabindex', '0')
+    appendTabIndexToChildren(child)
+  }
+}
+
 export default function BlogEntry () {
   const [post, setPost] = useState(null)
   const { entry } = useParams()
@@ -17,6 +27,9 @@ export default function BlogEntry () {
     const post = await fetch(data.default)
 
     setPost(await post.text())
+
+    const element = document.getElementById('blog-entry')
+    appendTabIndexToChildren(element)
   }
 
   useEffect(() => {
@@ -27,7 +40,7 @@ export default function BlogEntry () {
 
   return (
     <PageSkeleton>
-      <section className='blog-entry'>
+      <section className='blog-entry' id='blog-entry'>
         <ReactMarkdown
           source={post}
         />

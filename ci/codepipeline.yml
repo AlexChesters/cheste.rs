@@ -182,28 +182,14 @@ Resources:
               InputArtifacts:
                 - Name: GitHubSource
               RunOrder: 1
-              Name: Create-Infrastructure-Change-Set
+              Name: Update-Stack
               Configuration:
-                ActionMode: CHANGE_SET_REPLACE
+                ActionMode: REPLACE_ON_FAILURE
                 Capabilities: CAPABILITY_NAMED_IAM
                 StackName: website-test
-                ChangeSetName: website-change-set-test
                 RoleArn: !Ref CodePipelineCloudFormationRoleArn
                 TemplatePath: GitHubSource::stacks/infrastructure.yml
                 TemplateConfiguration: GitHubSource::stacks/parameters/infrastructure/test.json
-            - ActionTypeId:
-                Category: Deploy
-                Owner: AWS
-                Version: "1"
-                Provider: CloudFormation
-              RunOrder: 2
-              Name: Run-Infrastructure-Change-Set
-              Configuration:
-                ActionMode: CHANGE_SET_EXECUTE
-                Capabilities: CAPABILITY_NAMED_IAM
-                StackName: website-test
-                ChangeSetName: website-change-set-test
-                RoleArn: !Ref CodePipelineCloudFormationRoleArn
             - ActionTypeId:
                 Category: Build
                 Owner: AWS
@@ -225,28 +211,14 @@ Resources:
               InputArtifacts:
                 - Name: GitHubSource
               RunOrder: 1
-              Name: Create-Infrastructure-Change-Set
+              Name: Update-Stack
               Configuration:
-                ActionMode: CHANGE_SET_REPLACE
+                ActionMode: REPLACE_ON_FAILURE
                 Capabilities: CAPABILITY_NAMED_IAM
                 StackName: website-live
-                ChangeSetName: website-change-set-live
                 RoleArn: !Ref CodePipelineCloudFormationRoleArn
                 TemplatePath: GitHubSource::stacks/infrastructure.yml
                 TemplateConfiguration: GitHubSource::stacks/parameters/infrastructure/live.json
-            - ActionTypeId:
-                Category: Deploy
-                Owner: AWS
-                Version: "1"
-                Provider: CloudFormation
-              RunOrder: 2
-              Name: Run-Infrastructure-Change-Set
-              Configuration:
-                ActionMode: CHANGE_SET_EXECUTE
-                Capabilities: CAPABILITY_NAMED_IAM
-                StackName: website-live
-                ChangeSetName: website-change-set-live
-                RoleArn: !Ref CodePipelineCloudFormationRoleArn
             - ActionTypeId:
                 Category: Build
                 Owner: AWS

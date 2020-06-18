@@ -11,7 +11,7 @@ phases:
   build:
     commands:
       - npm t
-      - latexmk -outdir=assets -pdf cv.tex
+      - sh ../ci/scripts/build.sh
       - npm run build:prod
       - aws s3 sync build s3://$BUCKET --cache-control max-age=$CACHE_MAX_AGE --acl public-read --delete
 artifacts:

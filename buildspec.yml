@@ -5,6 +5,8 @@ phases:
     runtime-versions:
       nodejs: 12
     commands:
+      - perl --version
+      # - yum install -y latexmk
       - cd static
       - npm ci
   build:

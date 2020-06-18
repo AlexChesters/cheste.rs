@@ -8,7 +8,6 @@ const FaviconsWebpackPlugin = require('favicons-webpack-plugin')
 module.exports = {
   mode: 'production',
   entry: [
-    '@babel/polyfill',
     './src/index.jsx'
   ],
   output: {

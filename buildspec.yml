@@ -12,7 +12,6 @@ phases:
     commands:
       - npm t
       - sh ../ci/scripts/build.sh
-      - npm run build:prod
       - aws s3 sync build s3://$BUCKET --cache-control max-age=$CACHE_MAX_AGE --acl public-read --delete
 artifacts:
   files:

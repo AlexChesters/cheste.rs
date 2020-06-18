@@ -45,7 +45,7 @@
     "identity-obj-proxy": "^3.0.0",
     "jest": "^25.2.7",
     "json-loader": "^0.5.7",
-    "node-sass": "^4.13.1",
+    "node-sass": "^4.14.1",
     "react-addons-test-utils": "^15.6.2",
     "react-hot-loader": "^4.12.20",
     "sass-loader": "^8.0.2",
@@ -55,7 +55,7 @@
     "url-loader": "^4.0.0",
     "webpack": "^4.42.1",
     "webpack-cli": "^3.3.11",
-    "webpack-dev-server": "^3.10.3"
+    "webpack-dev-server": "^3.11.0"
   },
   "dependencies": {
     "isomorphic-fetch": "^2.2.1",
@@ -63,6 +63,7 @@
     "ramda": "^0.27.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-gist": "^1.2.1",
     "react-markdown": "^4.3.1",
     "react-router-dom": "^5.1.2"
   }

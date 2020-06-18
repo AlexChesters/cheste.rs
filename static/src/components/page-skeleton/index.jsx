@@ -11,7 +11,7 @@ const Skeleton = (props) => {
         <a href='mailto:alex@cheste.rs' className='header__item header__item--right-aligned blue' tabIndex={0}>Email</a>
         <a href='/blog' className='header__item header__item--right-aligned blue' tabIndex={0}>Blog</a>
         <a href='/talks' className='header__item header__item--right-aligned blue' tabIndex={0}>Talks</a>
-        <a href='https://github.com/AlexChesters' className='header__item header__item--right-aligned blue' tabIndex={0}>Code</a>
+        <a href='/projects' className='header__item header__item--right-aligned blue' tabIndex={0}>Projects</a>
         <a href='/' className='header__item header__item--right-aligned blue' tabIndex={0}>Home</a>
       </header>
       <main className='main-content'>

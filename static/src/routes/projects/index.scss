@@ -1,0 +1,36 @@
+@import '../../styles/colors.scss';
+@import '../../styles/variables.scss';
+
+.projects {
+  text-align: center;
+
+  @media screen and (max-width: map-get($map: $variables, $key: break-large)) {
+    width: 80%;
+  }
+
+  width: 60%;
+  margin: 0 auto;
+
+  & .projects__list {
+    &-item--title {
+      margin: 0;
+      color: map-get($map: $colors, $key: green);
+
+      &:hover {
+        color: darken(map-get($map: $colors, $key: green), 15%);
+      }
+    }
+
+    &-item--description {
+      margin: 0.2em;
+
+      & a {
+        color: map-get($map: $colors, $key: green);
+
+        &:hover {
+          color: darken(map-get($map: $colors, $key: green), 15%);
+        }
+      }
+    }
+  }
+}

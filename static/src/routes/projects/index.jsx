@@ -1,5 +1,4 @@
 import React from 'react'
-import Gist from 'react-gist'
 
 import PageSkeleton from '../../components/page-skeleton'
 
@@ -19,9 +18,6 @@ export default function Projects () {
             the <a href='https://data.police.uk/docs/' target='_blank' rel='noreferrer noopener' tabIndex={0}>UK Police Data API</a>,
             compatible with Node.js and the browser.
           </p>
-            <div>
-              <Gist id='775ba3c969a7479f99b7271a3f0efdff' />
-            </div>
           </section>
           <section>
             <h1><a href='https://github.com/AlexChesters/vigilante' target='_blank' rel='noreferrer noopener' className='projects__list-item--title' tabIndex={0}>Vigilante</a></h1>

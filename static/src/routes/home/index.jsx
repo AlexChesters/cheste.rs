@@ -15,7 +15,7 @@ export default function Home () {
       </section>
       <section className='blurb' tabIndex={0}>
         <p tabIndex={0}>
-          I’m a software engineer based in the North West of England, currently
+          I&apos;m a software engineer based in the North West of England, currently
           working for BBC iPlayer &amp; Sounds in Salford, Greater
           Manchester.
 

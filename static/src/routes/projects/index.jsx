@@ -31,6 +31,20 @@ export default function Projects () {
               If you're interested in learning more, I wrote a <a href='https://cheste.rs/blog/004'>blog post</a> about it.
             </p>
           </section>
+          <section>
+            <h1><a href='https://github.com/AlexChesters/afk' target='_blank' rel='noreferrer noopener' className='projects__list-item--title' tabIndex={0}>AFK</a></h1>
+            <p className='projects__list-item--description' tabIndex={0}>
+              <span className='italic'>AFK</span> was one project that came out
+              of a hack week I was a part of in 2017. I'd been working with AWS
+              for a number of years at that point but I wanted to try out some
+              of the lesser known services such as <a href='https://aws.amazon.com/rekognition/' target='_blank' rel='noreferrer noopener' tabIndex={0}>Amazon Rekognition</a>, a deep learning-based image recognition service.
+            </p>
+            <p className='projects__list-item--description' tabIndex={0}>
+              AFK is a simple Python program that detects when your have moved
+              away from your screen and locks your system. If you're interested
+              in learning more, I wrote a <a href='https://cheste.rs/blog/001'>blog post</a> about it.
+            </p>
+          </section>
         </section>
       </section>
     </PageSkeleton>

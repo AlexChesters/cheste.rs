@@ -6,8 +6,6 @@ import PageSkeleton from '../../components/page-skeleton'
 import './index.scss'
 
 export default function Projects () {
-  // 775ba3c969a7479f99b7271a3f0efdff
-
   return (
     <PageSkeleton>
       <section className='projects'>

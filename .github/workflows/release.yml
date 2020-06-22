@@ -19,7 +19,7 @@ jobs:
       - name: run tests
         run: cd static && npm t
       - name: build app
-        run: cd static && ../ci/scripts/build.sh
+        run: cd static && sh ../ci/scripts/build.sh
       # - name: configure AWS credentials
       #   uses: aws-actions/configure-aws-credentials@v1
       #   with:

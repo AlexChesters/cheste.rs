@@ -20,6 +20,13 @@ export default function Projects () {
             </p>
           </section>
           <section>
+            <h1><a href='https://github.com/AlexChesters/rss-url-parser' target='_blank' rel='noreferrer noopener' className='projects__list-item--title' tabIndex={0}>RSS URL Parser</a></h1>
+            <p className='projects__list-item--description' tabIndex={0}>
+              RSS URL Parser is a Node.js module which allows you parse an RSS
+              feed URL and retrieve an array of JSON objects.
+            </p>
+          </section>
+          <section>
             <h1><a href='https://github.com/AlexChesters/vigilante' target='_blank' rel='noreferrer noopener' className='projects__list-item--title' tabIndex={0}>Vigilante</a></h1>
             <p className='projects__list-item--description' tabIndex={0}>
               <span className='italic'>Vigilante</span> is a minimalist web

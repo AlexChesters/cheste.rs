@@ -15,8 +15,7 @@ export default function Projects () {
             <p className='projects__list-item--description' tabIndex={0}>
               As featured on the UK
               Police Data API <a href='https://data.police.uk/about/#tools' target='_blank' rel='noreferrer noopener' tabIndex={0}>website</a>, <span className='italic'>UKPD</span> is a simple Node.js client for
-              the <a href='https://data.police.uk/docs/' target='_blank' rel='noreferrer noopener' tabIndex={0}>UK Police Data API</a>,
-              compatible with Node.js and the browser.
+              the <a href='https://data.police.uk/docs/' target='_blank' rel='noreferrer noopener' tabIndex={0}>UK Police Data API</a>.
             </p>
           </section>
           <section>

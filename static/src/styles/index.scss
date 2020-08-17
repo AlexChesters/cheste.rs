@@ -4,6 +4,10 @@ body {
   font-family: Palatino Linotype, Book Antiqua, Palatino, serif;
 }
 
+pre {
+  font-family: 'Times New Roman', monospace;
+}
+
 #app {
   display: flex;
   justify-content: center;

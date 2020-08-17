@@ -58,7 +58,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: 'src/html/index.html'
     }),
-    new CopyPlugin([{ from: 'assets', to: 'assets' }]),
+    new CopyPlugin({ patterns: [{ from: 'assets', to: 'assets' }] }),
     new FaviconsWebpackPlugin('./assets/img/me.jpg'),
     new webpack.HotModuleReplacementPlugin()
   ]

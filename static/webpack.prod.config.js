@@ -54,7 +54,7 @@ module.exports = {
         collapseWhitespace: true
       }
     }),
-    new CopyPlugin([{ from: 'assets', to: 'assets' }]),
+    new CopyPlugin({ patterns: [{ from: 'assets', to: 'assets' }] }),
     new FaviconsWebpackPlugin('./assets/img/me.jpg')
   ]
 }

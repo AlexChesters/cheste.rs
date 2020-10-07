@@ -8,10 +8,14 @@ Parameters:
     Type: String
     Description: IAM Role ARN to be assumed by CodePipeline to perform CloudFormation actions
     Default: arn:aws:iam::008356366354:role/core-infrastructure-globa-CodePipelineCloudFormati-1NF00Q6M6OVE1
-  BuildArtifactsBucketName:
+  BuildArtifactsBucketEUWest1Name:
     Type: String
-    Description: S3 Bucket name where build artifacts are stored
+    Description: S3 Bucket name where build artifacts are stored in eu-west-1
     Default: core-infrastructure-eu-w-buildartifactsbucketeuwe-12d2acmozch84
+  BuildArtifactsBucketUSEast1Name:
+    Type: String
+    Description: S3 Bucket name where build artifacts are stored in us-east-1
+    Default: core-infrastructure-us-e-buildartifactsbucketusea-cmkndmg3ty11
   CodePipelineExecutionRoleArn:
     Type: String
     Description: IAM Role ARN to be assumed by CodePipeline when executing
@@ -58,7 +62,7 @@ Resources:
     Properties:
       Artifacts:
         Type: CODEPIPELINE
-        Location: !Ref BuildArtifactsBucketName
+        Location: !Ref BuildArtifactsBucketEUWest1Name
         Path: /artifacts/personal-website-test/
         Packaging: NONE
         Name: build
@@ -118,7 +122,7 @@ Resources:
     Properties:
       Artifacts:
         Type: CODEPIPELINE
-        Location: !Ref BuildArtifactsBucketName
+        Location: !Ref BuildArtifactsBucketEUWest1Name
         Path: /artifacts/personal-website-live/
         Packaging: NONE
         Name: build
@@ -148,9 +152,15 @@ Resources:
   CodePipeline:
     Type: AWS::CodePipeline::Pipeline
     Properties:
-      ArtifactStore:
-        Type: S3
-        Location: !Ref BuildArtifactsBucketName
+      ArtifactStores:
+        - Region: eu-west-1
+          ArtifactStore:
+            Type: S3
+            Location: !Ref BuildArtifactsBucketEUWest1Name
+        - Region: us-east-1
+          ArtifactStore:
+            Type: S3
+            Location: !Ref BuildArtifactsBucketUSEast1Name
       Name: personal-website
       RestartExecutionOnUpdate: true
       RoleArn: !Ref CodePipelineExecutionRoleArn
@@ -183,6 +193,7 @@ Resources:
                 - Name: GitHubSource
               RunOrder: 1
               Name: Update-Stack
+              Region: eu-west-1
               Configuration:
                 ActionMode: REPLACE_ON_FAILURE
                 Capabilities: CAPABILITY_NAMED_IAM
@@ -212,6 +223,7 @@ Resources:
                 - Name: GitHubSource
               RunOrder: 1
               Name: Update-Stack
+              Region: eu-west-1
               Configuration:
                 ActionMode: REPLACE_ON_FAILURE
                 Capabilities: CAPABILITY_NAMED_IAM

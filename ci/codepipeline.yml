@@ -193,7 +193,7 @@ Resources:
                 - Name: GitHubSource
               RunOrder: 1
               Name: Update-Stack
-              Region: eu-west-1
+              Region: us-east-1
               Configuration:
                 ActionMode: REPLACE_ON_FAILURE
                 Capabilities: CAPABILITY_NAMED_IAM
@@ -223,7 +223,7 @@ Resources:
                 - Name: GitHubSource
               RunOrder: 1
               Name: Update-Stack
-              Region: eu-west-1
+              Region: us-east-1
               Configuration:
                 ActionMode: REPLACE_ON_FAILURE
                 Capabilities: CAPABILITY_NAMED_IAM

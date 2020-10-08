@@ -9,7 +9,7 @@ phases:
       - cd lambda/viewer-request
       - npm ci
       - npm t
-      - sh ../ci/scripts/lambda/viewer-request/build.sh
+      - sh ../../ci/scripts/lambda/viewer-request/build.sh
 artifacts:
   files:
     - "**/*"

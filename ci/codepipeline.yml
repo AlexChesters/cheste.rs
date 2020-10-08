@@ -23,11 +23,11 @@ Parameters:
   TestBucketName:
     Description: Name of the S3 bucket for the test environment
     Type: String
-    Default: website-test-bucket-tf3zgdop32af
+    Default: website-test-bucket-bucket-nexpgm1osjww
   LiveBucketName:
     Description: Name of the S3 bucket for the live environment
     Type: String
-    Default: website-live-bucket-rkoqj02zvvlp
+    Default: website-live-bucket-bucket-414o23416c9a
 Resources:
   TestCodeBuildRole:
     Type: AWS::IAM::Role

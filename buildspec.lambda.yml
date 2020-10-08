@@ -11,6 +11,7 @@ phases:
       - npm t
       - sh ../../ci/scripts/lambda/viewer-request/build.sh
       - cd ../../
+      - ls -al build
       - aws cloudformation package --template-file ./stacks/cloudfront.yml --s3-bucket core-infrastructure-eu-w-buildartifactsbucketeuwe-12d2acmozch84 --s3-prefix /artifacts/personal-website-lambda/ --output-template-file ./stacks/cloudfront-packaged-template.yml
 artifacts:
   files:

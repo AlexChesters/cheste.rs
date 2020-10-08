@@ -246,7 +246,7 @@ Resources:
                 Capabilities: CAPABILITY_NAMED_IAM
                 StackName: website-test-cloudfront
                 RoleArn: !Ref CodePipelineCloudFormationRoleArn
-                TemplatePath: GitHubSource::stacks/cloudfront.yml
+                TemplatePath: GitHubSource::stacks/cloudfront-packaged-template.yml
                 TemplateConfiguration: GitHubSource::stacks/parameters/cloudfront/test.json
             - ActionTypeId:
                 Category: Deploy
@@ -292,7 +292,7 @@ Resources:
                 Capabilities: CAPABILITY_NAMED_IAM
                 StackName: website-live-cloudfront
                 RoleArn: !Ref CodePipelineCloudFormationRoleArn
-                TemplatePath: GitHubSource::stacks/cloudfront.yml
+                TemplatePath: GitHubSource::stacks/cloudfront-packaged-template.yml
                 TemplateConfiguration: GitHubSource::stacks/parameters/cloudfront/live.json
             - ActionTypeId:
                 Category: Deploy

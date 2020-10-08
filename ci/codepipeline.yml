@@ -83,7 +83,7 @@ Resources:
           - Name: CACHE_MAX_AGE
             Value: "600"
             Type: PLAINTEXT
-      Name: personal-website-build-and-deploy-test
+      Name: personal-website-build-and-deploy-website-test
       ServiceRole: !GetAtt TestWebsiteCodeBuildRole.Arn
       Source:
         Type: CODEPIPELINE
@@ -143,7 +143,7 @@ Resources:
           - Name: CACHE_MAX_AGE
             Value: "3600"
             Type: PLAINTEXT
-      Name: personal-website-build-and-deploy-live
+      Name: personal-website-build-and-deploy-website-live
       ServiceRole: !GetAtt LiveWebsiteCodeBuildRole.Arn
       Source:
         Type: CODEPIPELINE

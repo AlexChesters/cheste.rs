@@ -36,6 +36,9 @@ Resources:
           MaxTTL: 3600
           TargetOriginId: BucketOrigin
           ViewerProtocolPolicy: redirect-to-https
+          LambdaFunctionAssociations:
+            - EventType: viewer-request
+              LambdaFunctionARN: !Ref ViewerRequestFunction.Version
         DefaultRootObject: index.html
         Enabled: true
         Origins:

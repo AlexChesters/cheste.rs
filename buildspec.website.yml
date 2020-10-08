@@ -4,12 +4,11 @@ phases:
   install:
     runtime-versions:
       nodejs: 12
+  build:
     commands:
       - apt-get update -y && apt-get install -y latexmk texlive-latex-extra
       - cd static
       - npm ci
-  build:
-    commands:
       - npm t
       - sh ../ci/scripts/static/build.sh
       - aws s3 sync build s3://$BUCKET --cache-control max-age=$CACHE_MAX_AGE --acl public-read --delete

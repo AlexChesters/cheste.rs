@@ -1,0 +1,15 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      nodejs: 12
+  build:
+    commands:
+      - cd lambda/viewer-request
+      - npm ci
+      - npm t
+      - sh ../ci/scripts/lambda/viewer-request/build.sh
+artifacts:
+  files:
+    - "**/*"

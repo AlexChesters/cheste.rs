@@ -29,7 +29,7 @@ Parameters:
     Type: String
     Default: website-live-bucket-bucket-414o23416c9a
 Resources:
-  TestCodeBuildRole:
+  TestWebsiteCodeBuildRole:
     Type: AWS::IAM::Role
     Properties:
       AssumeRolePolicyDocument:
@@ -57,7 +57,7 @@ Resources:
                 Resource:
                   - !Sub "arn:aws:s3:::${TestBucketName}"
 
-  TestCodeBuildProject:
+  TestWebsiteCodeBuildProject:
     Type: AWS::CodeBuild::Project
     Properties:
       Artifacts:
@@ -84,12 +84,12 @@ Resources:
             Value: "600"
             Type: PLAINTEXT
       Name: personal-website-build-and-deploy-test
-      ServiceRole: !GetAtt TestCodeBuildRole.Arn
+      ServiceRole: !GetAtt TestWebsiteCodeBuildRole.Arn
       Source:
         Type: CODEPIPELINE
         BuildSpec: buildspec.website.yml
 
-  LiveCodeBuildRole:
+  LiveWebsiteCodeBuildRole:
     Type: AWS::IAM::Role
     Properties:
       AssumeRolePolicyDocument:
@@ -117,7 +117,7 @@ Resources:
                 Resource:
                   - !Sub "arn:aws:s3:::${LiveBucketName}"
 
-  LiveCodeBuildProject:
+  LiveWebsiteCodeBuildProject:
     Type: AWS::CodeBuild::Project
     Properties:
       Artifacts:
@@ -144,10 +144,44 @@ Resources:
             Value: "3600"
             Type: PLAINTEXT
       Name: personal-website-build-and-deploy-live
-      ServiceRole: !GetAtt LiveCodeBuildRole.Arn
+      ServiceRole: !GetAtt LiveWebsiteCodeBuildRole.Arn
       Source:
         Type: CODEPIPELINE
         BuildSpec: buildspec.website.yml
+
+  LambdaCodeBuildRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Statement:
+          - Action: sts:AssumeRole
+            Effect: Allow
+            Principal:
+              Service: codebuild.amazonaws.com
+      ManagedPolicyArns:
+        - !Ref BasePolicyArn
+
+  LambdaCodeBuildProject:
+    Type: AWS::CodeBuild::Project
+    Properties:
+      Artifacts:
+        Type: CODEPIPELINE
+        Location: !Ref BuildArtifactsBucketEUWest1Name
+        Path: /artifacts/personal-website-lambda/
+        Packaging: NONE
+        Name: build
+        NamespaceType: BUILD_ID
+      TimeoutInMinutes: 5
+      Description: Builds my personal website lambdas
+      Environment:
+        ComputeType: BUILD_GENERAL1_SMALL
+        Image: aws/codebuild/standard:3.0
+        Type: LINUX_CONTAINER
+      Name: personal-website-build-lambda
+      ServiceRole: !GetAtt LambdaCodeBuildRole.Arn
+      Source:
+        Type: CODEPIPELINE
+        BuildSpec: buildspec.lambda.yml
 
   CodePipeline:
     Type: AWS::CodePipeline::Pipeline
@@ -182,6 +216,19 @@ Resources:
                 Branch: master
                 OAuthToken: "{{resolve:ssm:/Secrets/GitHub-Personal-Access-Token:1}}"
                 PollForSourceChanges: false
+        - Name: Lambda
+          Actions:
+            - ActionTypeId:
+                Category: Build
+                Owner: AWS
+                Version: "1"
+                Provider: CodeBuild
+              InputArtifacts:
+                - Name: GitHubSource
+              RunOrder: 1
+              Name: Build
+              Configuration:
+                ProjectName: !Ref LambdaCodeBuildProject
         - Name: Deploy-To-Test
           Actions:
             - ActionTypeId:
@@ -227,7 +274,7 @@ Resources:
               RunOrder: 2
               Name: Build-And-Deploy-Website-Content
               Configuration:
-                ProjectName: !Ref "TestCodeBuildProject"
+                ProjectName: !Ref TestWebsiteCodeBuildProject
         - Name: Deploy-To-Live
           Actions:
             - ActionTypeId:
@@ -273,7 +320,7 @@ Resources:
               RunOrder: 2
               Name: Build-And-Deploy-Website-Content
               Configuration:
-                ProjectName: !Ref "LiveCodeBuildProject"
+                ProjectName: !Ref LiveWebsiteCodeBuildProject
 
   CodePipelineWebhook:
     Type: AWS::CodePipeline::Webhook

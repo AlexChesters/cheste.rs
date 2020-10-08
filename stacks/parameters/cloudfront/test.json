@@ -1,5 +1,6 @@
 {
   "Parameters": {
+    "Environment": "test",
     "Domain": "test.cheste.rs",
     "BucketName": "website-test-bucket-bucket-nexpgm1osjww"
   },

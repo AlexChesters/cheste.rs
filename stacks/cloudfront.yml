@@ -1,5 +1,12 @@
+Transform: AWS::Serverless-2016-10-31
 Description: CloudFront resources for my personal website
 Parameters:
+  Environment:
+    Type: String
+    AllowedValues:
+      - test
+      - live
+    Description: The infrastructure environment
   Domain:
     Description: Domain name to point at this environment
     Type: String
@@ -48,3 +55,37 @@ Resources:
         DNSName: !GetAtt Distribution.DomainName
         HostedZoneId: Z2FDTNDATAQYW2
       HostedZoneId: Z3GMV07UUM9S0H
+  ViewerRequestFunctionRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: 2012-10-17
+        Statement:
+          - Action: sts:AssumeRole
+            Effect: Allow
+            Principal:
+              Service:
+                - lambda.amazonaws.com
+                - edgelambda.amazonaws.com
+      ManagedPolicyArns:
+        - arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole
+      Policies:
+        - PolicyName: !Sub "${Environment}-viewer-request-policy"
+          PolicyDocument:
+            Statement:
+              - Effect: Allow
+                Action:
+                  - s3:GetObject
+                Resource:
+                  - arn:aws:s3:::blah/*
+  ViewerRequestFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: ../build/viewer-request
+      Handler: src/index.handler
+      Runtime: nodejs12.x
+      FunctionName: !Sub "${Environment}-personal-website-viewer-request"
+      MemorySize: 192
+      AutoPublishAlias: alias
+      Role: !GetAtt ViewerRequestFunctionRole.Arn
+      Timeout: 3

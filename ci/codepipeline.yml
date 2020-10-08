@@ -87,7 +87,7 @@ Resources:
       ServiceRole: !GetAtt TestCodeBuildRole.Arn
       Source:
         Type: CODEPIPELINE
-        BuildSpec: buildspec.yml
+        BuildSpec: buildspec.website.yml
 
   LiveCodeBuildRole:
     Type: AWS::IAM::Role
@@ -147,7 +147,7 @@ Resources:
       ServiceRole: !GetAtt LiveCodeBuildRole.Arn
       Source:
         Type: CODEPIPELINE
-        BuildSpec: buildspec.yml
+        BuildSpec: buildspec.website.yml
 
   CodePipeline:
     Type: AWS::CodePipeline::Pipeline

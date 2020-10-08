@@ -184,23 +184,23 @@ Resources:
                 PollForSourceChanges: false
         - Name: Deploy-To-Test
           Actions:
-            # - ActionTypeId:
-            #     Category: Deploy
-            #     Owner: AWS
-            #     Version: "1"
-            #     Provider: CloudFormation
-            #   InputArtifacts:
-            #     - Name: GitHubSource
-            #   RunOrder: 1
-            #   Name: Update-CloudFront-Stack
-            #   Region: us-east-1
-            #   Configuration:
-            #     ActionMode: REPLACE_ON_FAILURE
-            #     Capabilities: CAPABILITY_NAMED_IAM
-            #     StackName: website-test-cloudfront
-            #     RoleArn: !Ref CodePipelineCloudFormationRoleArn
-            #     TemplatePath: GitHubSource::stacks/cloudfront.yml
-            #     TemplateConfiguration: GitHubSource::stacks/parameters/cloudfront/test.json
+            - ActionTypeId:
+                Category: Deploy
+                Owner: AWS
+                Version: "1"
+                Provider: CloudFormation
+              InputArtifacts:
+                - Name: GitHubSource
+              RunOrder: 1
+              Name: Update-CloudFront-Stack
+              Region: us-east-1
+              Configuration:
+                ActionMode: REPLACE_ON_FAILURE
+                Capabilities: CAPABILITY_NAMED_IAM
+                StackName: website-test-cloudfront
+                RoleArn: !Ref CodePipelineCloudFormationRoleArn
+                TemplatePath: GitHubSource::stacks/cloudfront.yml
+                TemplateConfiguration: GitHubSource::stacks/parameters/cloudfront/test.json
             - ActionTypeId:
                 Category: Deploy
                 Owner: AWS
@@ -230,23 +230,23 @@ Resources:
                 ProjectName: !Ref "TestCodeBuildProject"
         - Name: Deploy-To-Live
           Actions:
-            # - ActionTypeId:
-            #     Category: Deploy
-            #     Owner: AWS
-            #     Version: "1"
-            #     Provider: CloudFormation
-            #   InputArtifacts:
-            #     - Name: GitHubSource
-            #   RunOrder: 1
-            #   Name: Update-Cloudfront-Stack
-            #   Region: us-east-1
-            #   Configuration:
-            #     ActionMode: REPLACE_ON_FAILURE
-            #     Capabilities: CAPABILITY_NAMED_IAM
-            #     StackName: website-live-cloudfront
-            #     RoleArn: !Ref CodePipelineCloudFormationRoleArn
-            #     TemplatePath: GitHubSource::stacks/cloudfront.yml
-            #     TemplateConfiguration: GitHubSource::stacks/parameters/cloudfront/live.json
+            - ActionTypeId:
+                Category: Deploy
+                Owner: AWS
+                Version: "1"
+                Provider: CloudFormation
+              InputArtifacts:
+                - Name: GitHubSource
+              RunOrder: 1
+              Name: Update-Cloudfront-Stack
+              Region: us-east-1
+              Configuration:
+                ActionMode: REPLACE_ON_FAILURE
+                Capabilities: CAPABILITY_NAMED_IAM
+                StackName: website-live-cloudfront
+                RoleArn: !Ref CodePipelineCloudFormationRoleArn
+                TemplatePath: GitHubSource::stacks/cloudfront.yml
+                TemplateConfiguration: GitHubSource::stacks/parameters/cloudfront/live.json
             - ActionTypeId:
                 Category: Deploy
                 Owner: AWS

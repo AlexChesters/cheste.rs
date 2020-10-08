@@ -1,6 +1,7 @@
 {
   "Parameters": {
-    "Domain": "test.cheste.rs"
+    "Domain": "test.cheste.rs",
+    "BucketName": "website-test-bucket-bucket-nexpgm1osjww"
   },
   "Tags": {
     "Project": "personal-website",

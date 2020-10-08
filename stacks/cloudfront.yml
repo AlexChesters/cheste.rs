@@ -1,32 +1,15 @@
-Description: Infrastructure definition for my personal website
+Description: CloudFront resources for my personal website
 Parameters:
   Domain:
     Description: Domain name to point at this environment
     Type: String
-Outputs:
-  BucketArn:
-    Description: ARN of the S3 bucket for this environment
-    Value: !GetAtt Bucket.Arn
-    Export:
-      Name: !Sub "${AWS::StackName}-bucket-arn"
+  BucketName:
+    Description: Name of the S3 bucket where the static content lives
+    Type: String
+    AllowedValues:
+      - foo
+      - bar
 Resources:
-  Bucket:
-    Type: AWS::S3::Bucket
-    Properties:
-      WebsiteConfiguration:
-        IndexDocument: index.html
-
-  BucketPolicy:
-    Type: AWS::S3::BucketPolicy
-    Properties:
-      Bucket: !Ref Bucket
-      PolicyDocument:
-        Statement:
-          - Action: s3:GetObject
-            Effect: Allow
-            Principal: "*"
-            Resource: !Sub "${Bucket.Arn}/*"
-
   Distribution:
     Type: AWS::CloudFront::Distribution
     Properties:
@@ -52,7 +35,7 @@ Resources:
           - Id: BucketOrigin
             CustomOriginConfig:
               OriginProtocolPolicy: http-only
-            DomainName: !Sub "${Bucket}.s3-website-eu-west-1.amazonaws.com"
+            DomainName: !Sub "${BucketName}.s3-website-eu-west-1.amazonaws.com"
         ViewerCertificate:
           AcmCertificateArn: arn:aws:acm:us-east-1:008356366354:certificate/daab8ecf-3314-4a73-a05b-e14fc91be6a2
           SslSupportMethod: sni-only

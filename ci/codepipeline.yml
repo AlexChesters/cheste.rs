@@ -184,6 +184,23 @@ Resources:
                 PollForSourceChanges: false
         - Name: Deploy-To-Test
           Actions:
+            # - ActionTypeId:
+            #     Category: Deploy
+            #     Owner: AWS
+            #     Version: "1"
+            #     Provider: CloudFormation
+            #   InputArtifacts:
+            #     - Name: GitHubSource
+            #   RunOrder: 1
+            #   Name: Update-CloudFront-Stack
+            #   Region: us-east-1
+            #   Configuration:
+            #     ActionMode: REPLACE_ON_FAILURE
+            #     Capabilities: CAPABILITY_NAMED_IAM
+            #     StackName: website-test-cloudfront
+            #     RoleArn: !Ref CodePipelineCloudFormationRoleArn
+            #     TemplatePath: GitHubSource::stacks/cloudfront.yml
+            #     TemplateConfiguration: GitHubSource::stacks/parameters/cloudfront/test.json
             - ActionTypeId:
                 Category: Deploy
                 Owner: AWS
@@ -192,15 +209,14 @@ Resources:
               InputArtifacts:
                 - Name: GitHubSource
               RunOrder: 1
-              Name: Update-Stack
-              Region: us-east-1
+              Name: Update-Bucket-Stack
               Configuration:
                 ActionMode: REPLACE_ON_FAILURE
                 Capabilities: CAPABILITY_NAMED_IAM
-                StackName: website-test
+                StackName: website-test-bucket
                 RoleArn: !Ref CodePipelineCloudFormationRoleArn
-                TemplatePath: GitHubSource::stacks/infrastructure.yml
-                TemplateConfiguration: GitHubSource::stacks/parameters/infrastructure/test.json
+                TemplatePath: GitHubSource::stacks/bucket.yml
+                TemplateConfiguration: GitHubSource::stacks/parameters/bucket/test.json
             - ActionTypeId:
                 Category: Build
                 Owner: AWS
@@ -208,12 +224,29 @@ Resources:
                 Provider: CodeBuild
               InputArtifacts:
                 - Name: GitHubSource
-              RunOrder: 3
+              RunOrder: 2
               Name: Build-And-Deploy-Website-Content
               Configuration:
                 ProjectName: !Ref "TestCodeBuildProject"
         - Name: Deploy-To-Live
           Actions:
+            # - ActionTypeId:
+            #     Category: Deploy
+            #     Owner: AWS
+            #     Version: "1"
+            #     Provider: CloudFormation
+            #   InputArtifacts:
+            #     - Name: GitHubSource
+            #   RunOrder: 1
+            #   Name: Update-Cloudfront-Stack
+            #   Region: us-east-1
+            #   Configuration:
+            #     ActionMode: REPLACE_ON_FAILURE
+            #     Capabilities: CAPABILITY_NAMED_IAM
+            #     StackName: website-live-cloudfront
+            #     RoleArn: !Ref CodePipelineCloudFormationRoleArn
+            #     TemplatePath: GitHubSource::stacks/cloudfront.yml
+            #     TemplateConfiguration: GitHubSource::stacks/parameters/cloudfront/live.json
             - ActionTypeId:
                 Category: Deploy
                 Owner: AWS
@@ -222,15 +255,14 @@ Resources:
               InputArtifacts:
                 - Name: GitHubSource
               RunOrder: 1
-              Name: Update-Stack
-              Region: us-east-1
+              Name: Update-Bucket-Stack
               Configuration:
                 ActionMode: REPLACE_ON_FAILURE
                 Capabilities: CAPABILITY_NAMED_IAM
-                StackName: website-live
+                StackName: website-live-bucket
                 RoleArn: !Ref CodePipelineCloudFormationRoleArn
-                TemplatePath: GitHubSource::stacks/infrastructure.yml
-                TemplateConfiguration: GitHubSource::stacks/parameters/infrastructure/live.json
+                TemplatePath: GitHubSource::stacks/bucket.yml
+                TemplateConfiguration: GitHubSource::stacks/parameters/bucket/live.json
             - ActionTypeId:
                 Category: Build
                 Owner: AWS
@@ -238,7 +270,7 @@ Resources:
                 Provider: CodeBuild
               InputArtifacts:
                 - Name: GitHubSource
-              RunOrder: 3
+              RunOrder: 2
               Name: Build-And-Deploy-Website-Content
               Configuration:
                 ProjectName: !Ref "LiveCodeBuildProject"

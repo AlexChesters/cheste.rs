@@ -87,7 +87,7 @@ Resources:
       ServiceRole: !GetAtt TestWebsiteCodeBuildRole.Arn
       Source:
         Type: CODEPIPELINE
-        BuildSpec: buildspec.website.yml
+        BuildSpec: buildspec.yml
 
   LiveWebsiteCodeBuildRole:
     Type: AWS::IAM::Role
@@ -147,41 +147,7 @@ Resources:
       ServiceRole: !GetAtt LiveWebsiteCodeBuildRole.Arn
       Source:
         Type: CODEPIPELINE
-        BuildSpec: buildspec.website.yml
-
-  LambdaCodeBuildRole:
-    Type: AWS::IAM::Role
-    Properties:
-      AssumeRolePolicyDocument:
-        Statement:
-          - Action: sts:AssumeRole
-            Effect: Allow
-            Principal:
-              Service: codebuild.amazonaws.com
-      ManagedPolicyArns:
-        - !Ref BasePolicyArn
-
-  LambdaCodeBuildProject:
-    Type: AWS::CodeBuild::Project
-    Properties:
-      Artifacts:
-        Type: CODEPIPELINE
-        Location: !Ref BuildArtifactsBucketEUWest1Name
-        Path: /artifacts/personal-website-lambda/
-        Packaging: NONE
-        Name: build
-        NamespaceType: BUILD_ID
-      TimeoutInMinutes: 5
-      Description: Builds my personal website lambdas
-      Environment:
-        ComputeType: BUILD_GENERAL1_SMALL
-        Image: aws/codebuild/standard:3.0
-        Type: LINUX_CONTAINER
-      Name: personal-website-build-lambda
-      ServiceRole: !GetAtt LambdaCodeBuildRole.Arn
-      Source:
-        Type: CODEPIPELINE
-        BuildSpec: buildspec.lambda.yml
+        BuildSpec: buildspec.yml
 
   CodePipeline:
     Type: AWS::CodePipeline::Pipeline
@@ -216,21 +182,6 @@ Resources:
                 Branch: master
                 OAuthToken: "{{resolve:ssm:/Secrets/GitHub-Personal-Access-Token:1}}"
                 PollForSourceChanges: false
-        - Name: Lambda
-          Actions:
-            - ActionTypeId:
-                Category: Build
-                Owner: AWS
-                Version: "1"
-                Provider: CodeBuild
-              InputArtifacts:
-                - Name: GitHubSource
-              OutputArtifacts:
-                - Name: BuiltLambdaPackage
-              RunOrder: 1
-              Name: Build
-              Configuration:
-                ProjectName: !Ref LambdaCodeBuildProject
         - Name: Deploy-To-Test
           Actions:
             - ActionTypeId:
@@ -239,7 +190,7 @@ Resources:
                 Version: "1"
                 Provider: CloudFormation
               InputArtifacts:
-                - Name: BuiltLambdaPackage
+                - Name: GitHubSource
               RunOrder: 1
               Name: Update-CloudFront-Stack
               Region: us-east-1
@@ -248,15 +199,15 @@ Resources:
                 Capabilities: CAPABILITY_NAMED_IAM,CAPABILITY_AUTO_EXPAND
                 StackName: website-test-cloudfront
                 RoleArn: !Ref CodePipelineCloudFormationRoleArn
-                TemplatePath: BuiltLambdaPackage::stacks/cloudfront-packaged-template.yml
-                TemplateConfiguration: BuiltLambdaPackage::stacks/parameters/cloudfront/test.json
+                TemplatePath: GitHubSource::stacks/cloudfront-packaged-template.yml
+                TemplateConfiguration: GitHubSource::stacks/parameters/cloudfront/test.json
             - ActionTypeId:
                 Category: Deploy
                 Owner: AWS
                 Version: "1"
                 Provider: CloudFormation
               InputArtifacts:
-                - Name: BuiltLambdaPackage
+                - Name: GitHubSource
               RunOrder: 1
               Name: Update-Bucket-Stack
               Configuration:
@@ -264,8 +215,8 @@ Resources:
                 Capabilities: CAPABILITY_NAMED_IAM,CAPABILITY_AUTO_EXPAND
                 StackName: website-test-bucket
                 RoleArn: !Ref CodePipelineCloudFormationRoleArn
-                TemplatePath: BuiltLambdaPackage::stacks/bucket.yml
-                TemplateConfiguration: BuiltLambdaPackage::stacks/parameters/bucket/test.json
+                TemplatePath: GitHubSource::stacks/bucket.yml
+                TemplateConfiguration: GitHubSource::stacks/parameters/bucket/test.json
             - ActionTypeId:
                 Category: Build
                 Owner: AWS
@@ -285,7 +236,7 @@ Resources:
                 Version: "1"
                 Provider: CloudFormation
               InputArtifacts:
-                - Name: BuiltLambdaPackage
+                - Name: GitHubSource
               RunOrder: 1
               Name: Update-Cloudfront-Stack
               Region: us-east-1
@@ -294,15 +245,15 @@ Resources:
                 Capabilities: CAPABILITY_NAMED_IAM,CAPABILITY_AUTO_EXPAND
                 StackName: website-live-cloudfront
                 RoleArn: !Ref CodePipelineCloudFormationRoleArn
-                TemplatePath: BuiltLambdaPackage::stacks/cloudfront-packaged-template.yml
-                TemplateConfiguration: BuiltLambdaPackage::stacks/parameters/cloudfront/live.json
+                TemplatePath: GitHubSource::stacks/cloudfront-packaged-template.yml
+                TemplateConfiguration: GitHubSource::stacks/parameters/cloudfront/live.json
             - ActionTypeId:
                 Category: Deploy
                 Owner: AWS
                 Version: "1"
                 Provider: CloudFormation
               InputArtifacts:
-                - Name: BuiltLambdaPackage
+                - Name: GitHubSource
               RunOrder: 1
               Name: Update-Bucket-Stack
               Configuration:
@@ -310,8 +261,8 @@ Resources:
                 Capabilities: CAPABILITY_NAMED_IAM,CAPABILITY_AUTO_EXPAND
                 StackName: website-live-bucket
                 RoleArn: !Ref CodePipelineCloudFormationRoleArn
-                TemplatePath: BuiltLambdaPackage::stacks/bucket.yml
-                TemplateConfiguration: BuiltLambdaPackage::stacks/parameters/bucket/live.json
+                TemplatePath: GitHubSource::stacks/bucket.yml
+                TemplateConfiguration: GitHubSource::stacks/parameters/bucket/live.json
             - ActionTypeId:
                 Category: Build
                 Owner: AWS

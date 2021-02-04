@@ -2,6 +2,7 @@
 
 body {
   font-family: Palatino Linotype, Book Antiqua, Palatino, serif;
+  background-color: map-get($map: $colors, $key: white);
 }
 
 pre {

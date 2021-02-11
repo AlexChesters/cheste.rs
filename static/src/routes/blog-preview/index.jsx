@@ -44,15 +44,21 @@ export default function BlogPreview () {
     <PageSkeleton>
       <section className='blog-preview'>
         <h1 className='title' tabIndex={0}>Blog</h1>
-        <section className='post__list'>
-          {
-            blogData.map((entry, index) => {
-              return (
-                <h1 key={index}><a href={`/blog/${entry.identifier}`} className='post__list-item--title' tabIndex={0}>{entry.title}</a></h1>
-              )
-            })
-          }
-        </section>
+        <table className='post__list'>
+          <tbody>
+            {
+              blogData.map((entry, index) => {
+                return (
+                  <tr key={index}>
+                    <td>
+                      <h1 key={index}><a href={`/blog/${entry.identifier}`} className='post__list-item--title' tabIndex={0}>{entry.title}</a></h1>
+                    </td>
+                  </tr>
+                )
+              })
+            }
+          </tbody>
+        </table>
       </section>
     </PageSkeleton>
   )

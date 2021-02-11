@@ -4,6 +4,8 @@
   text-align: center;
 
   & .post__list {
+    margin: 0 auto;
+
     &-item--title {
       color: map-get($map: $colors, $key: green);
 

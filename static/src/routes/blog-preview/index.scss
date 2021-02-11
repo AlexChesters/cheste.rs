@@ -5,12 +5,28 @@
 
   & .post__table {
     margin: 0 auto;
+    width: 80%;
 
-    &-item--title {
-      color: map-get($map: $colors, $key: green);
+    &-item {
+      &:nth-child(odd) {
+        text-align: right;
+      }
 
-      &:hover {
-        color: darken(map-get($map: $colors, $key: green), 15%);
+      &:nth-child(even) {
+        text-align: left;
+      }
+
+      &--image {
+        height: 200px;
+        float: left;
+      }
+
+      &--title {
+        color: map-get($map: $colors, $key: green);
+
+        &:hover {
+          color: darken(map-get($map: $colors, $key: green), 15%);
+        }
       }
     }
   }

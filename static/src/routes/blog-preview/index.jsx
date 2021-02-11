@@ -49,8 +49,9 @@ export default function BlogPreview () {
             {
               blogData.map((entry, index) => {
                 return (
-                  <tr key={index}>
+                  <tr key={index} className='post__table-item'>
                     <td>
+                      <img src={`/assets/img/blog/previews/${entry.identifier}.png`} className='post__table-item--image'></img>
                       <h1 key={index}><a href={`/blog/${entry.identifier}`} className='post__table-item--title' tabIndex={0}>{entry.title}</a></h1>
                     </td>
                   </tr>

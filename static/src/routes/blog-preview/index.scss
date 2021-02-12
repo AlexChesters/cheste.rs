@@ -5,20 +5,19 @@
 
   & .post__table {
     margin: 0 auto;
-    width: 80%;
+    width: 100%;
 
     &-item {
       &:nth-child(odd) {
-        text-align: right;
+        background-color: map-get($map: $colors, $key: green);
       }
 
-      &:nth-child(even) {
-        text-align: left;
-      }
+      &:nth-child(odd) td a {
+        color: map-get($map: $colors, $key: white);
 
-      &--image {
-        height: 200px;
-        float: left;
+        &:hover {
+          color: darken(white, 15%);
+        };
       }
 
       &--title {

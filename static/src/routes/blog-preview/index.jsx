@@ -1,56 +1,46 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 
 import PageSkeleton from '../../components/page-skeleton'
 
 import './index.scss'
 
 export default function BlogPreview () {
-  const [blogData, setBlogData] = useState([])
-
-  async function fetchData () {
-    const data = [
-      {
-        identifier: '008',
-        title: 'AWS Re:Invent 2019 - An Overview',
-        preview: ''
-      },
-      {
-        identifier: '007',
-        title: 'How my website is built',
-        preview: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In non ex erat. In elit nibh, hendrerit ac dui quis, faucibus.'
-      },
-      {
-        identifier: '006',
-        title: 'AWS Re:Invent - Top Tips'
-      },
-      {
-        identifier: '005',
-        title: 'AWS Re:Invent 2018 - An Overview'
-      },
-      {
-        identifier: '004',
-        title: 'Creating your own web server in Node.js'
-      },
-      {
-        identifier: '003',
-        title: 'Creating an AWS Budget with alarms'
-      },
-      {
-        identifier: '002',
-        title: 'Hack Week December 2017 - Who\'s This?'
-      },
-      {
-        identifier: '001',
-        title: 'Hack Week May 2017 - AFK'
-      }
-    ]
-
-    setBlogData(data)
-  }
-
-  useEffect(() => {
-    fetchData()
-  }, [])
+  const blogData = [
+    {
+      identifier: '008',
+      title: 'AWS Re:Invent 2019 - An Overview',
+      preview: ''
+    },
+    {
+      identifier: '007',
+      title: 'How my website is built',
+      preview: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In non ex erat. In elit nibh, hendrerit ac dui quis, faucibus.'
+    },
+    {
+      identifier: '006',
+      title: 'AWS Re:Invent - Top Tips'
+    },
+    {
+      identifier: '005',
+      title: 'AWS Re:Invent 2018 - An Overview'
+    },
+    {
+      identifier: '004',
+      title: 'Creating your own web server in Node.js'
+    },
+    {
+      identifier: '003',
+      title: 'Creating an AWS Budget with alarms'
+    },
+    {
+      identifier: '002',
+      title: 'Hack Week December 2017 - Who\'s This?'
+    },
+    {
+      identifier: '001',
+      title: 'Hack Week May 2017 - AFK'
+    }
+  ]
 
   return (
     <PageSkeleton>

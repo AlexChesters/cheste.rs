@@ -8,13 +8,11 @@ export default function BlogPreview () {
   const blogData = [
     {
       identifier: '008',
-      title: 'AWS Re:Invent 2019 - An Overview',
-      preview: ''
+      title: 'AWS Re:Invent 2019 - An Overview'
     },
     {
       identifier: '007',
-      title: 'How my website is built',
-      preview: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In non ex erat. In elit nibh, hendrerit ac dui quis, faucibus.'
+      title: 'How my website is built'
     },
     {
       identifier: '006',
@@ -55,7 +53,6 @@ export default function BlogPreview () {
                     <td>
                       <a href={`/blog/${entry.identifier}`} className='post__table-item--title' tabIndex={0}>
                         <h1>{entry.title}</h1>
-                        <p>{entry.preview}</p>
                       </a>
                     </td>
                   </tr>

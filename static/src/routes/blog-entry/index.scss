@@ -14,4 +14,18 @@
     margin: 0 auto;
     display: block;
   }
+
+  & h1, h3 {
+    color: map-get($map: $colors, $key: green);
+  }
+
+  & a {
+    color: inherit;
+  }
+
+  & p {
+    & a {
+      font-weight: bold;
+    }
+  }
 }

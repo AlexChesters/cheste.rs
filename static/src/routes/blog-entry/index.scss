@@ -15,7 +15,8 @@
     display: block;
   }
 
-  & h1, h3 {
+  & h1,
+  h3 {
     color: map-get($map: $colors, $key: green);
   }
 

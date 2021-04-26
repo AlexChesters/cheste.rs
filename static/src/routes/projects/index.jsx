@@ -19,6 +19,12 @@ export default function Projects () {
             </p>
           </section>
           <section>
+            <h1><a href='https://projects.alexchesters.com/hn-commentless' target='_blank' rel='noreferrer noopener' className='projects__list-item--title' tabIndex={0}>HN Commentless</a></h1>
+            <p className='projects__list-item--description' tabIndex={0}>
+              HN Commentless is a simple interface to the best <a href='https://news.ycombinator.com' target='_blank' rel='noreferrer noopener' tabIndex={0}>Hacker News</a> stories without any comment threads.
+            </p>
+          </section>
+          <section>
             <h1><a href='https://github.com/AlexChesters/rss-url-parser' target='_blank' rel='noreferrer noopener' className='projects__list-item--title' tabIndex={0}>RSS URL Parser</a></h1>
             <p className='projects__list-item--description' tabIndex={0}>
               RSS URL Parser is a Node.js module which allows you parse an RSS

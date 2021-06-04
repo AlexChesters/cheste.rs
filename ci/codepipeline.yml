@@ -169,19 +169,19 @@ Resources:
           Actions:
             - ActionTypeId:
                 Category: Source
-                Owner: ThirdParty
+                Owner: AWS
                 Version: "1"
-                Provider: GitHub
+                Provider: CodeStarSourceConnection
               OutputArtifacts:
                 - Name: GitHubSource
               RunOrder: 1
               Name: Clone-From-GitHub
+              Namespace: SourceVariables
               Configuration:
-                Owner: AlexChesters
-                Repo: cheste.rs
-                Branch: master
-                OAuthToken: "{{resolve:ssm:/Secrets/GitHub-Personal-Access-Token:1}}"
-                PollForSourceChanges: false
+                ConnectionArn: !ImportValue core-infrastructure-eu-west-1-codestar-github-connection-arn
+                FullRepositoryId: alexchesters/cheste.rs
+                BranchName: main
+                OutputArtifactFormat: CODE_ZIP
         - Name: Deploy-To-Test
           Actions:
             - ActionTypeId:
@@ -274,16 +274,3 @@ Resources:
               Name: Build-And-Deploy-Website-Content
               Configuration:
                 ProjectName: !Ref LiveWebsiteCodeBuildProject
-
-  CodePipelineWebhook:
-    Type: AWS::CodePipeline::Webhook
-    Properties:
-      Authentication: GITHUB_HMAC
-      AuthenticationConfiguration:
-        SecretToken: "{{resolve:ssm:/Secrets/GitHub-Webhook-Secret:1}}"
-      Filters:
-        - JsonPath: "$.ref"
-      TargetPipeline: !Ref CodePipeline
-      TargetAction: Clone-From-GitHub
-      TargetPipelineVersion: !GetAtt CodePipeline.Version
-      RegisterWithThirdParty: true

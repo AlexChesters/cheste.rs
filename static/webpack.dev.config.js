@@ -15,7 +15,7 @@ module.exports = {
   output: {
     path: path.join(__dirname, '/build'),
     publicPath: '/',
-    filename: 'bundle.[hash].js'
+    filename: 'bundle.[contenthash].js'
   },
   devServer: {
     contentBase: './build',

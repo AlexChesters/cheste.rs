@@ -2,7 +2,9 @@ import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import fetch from 'isomorphic-fetch'
 
-import ReactMarkdown from 'react-markdown/with-html'
+import Markdown from 'react-markdown'
+import rehypeRaw from 'rehype-raw'
+import rehypeSanitize from 'rehype-sanitize'
 
 import PageSkeleton from '../../components/page-skeleton'
 
@@ -41,9 +43,9 @@ export default function BlogEntry () {
   return (
     <PageSkeleton>
       <section className='blog-entry' id='blog-entry'>
-        <ReactMarkdown
-          source={post}
-        />
+        <Markdown rehypePlugins={[rehypeRaw, rehypeSanitize]}>
+          {post}
+        </Markdown>
       </section>
     </PageSkeleton>
   )

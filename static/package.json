@@ -9,7 +9,7 @@
   "scripts": {
     "build:dev": "webpack --config webpack.dev.config.js",
     "build:prod": "webpack --config webpack.prod.config.js",
-    "start": "webpack-dev-server --config webpack.dev.config.js --port 8081",
+    "start": "webpack serve --config webpack.dev.config.js --port 8081",
     "lint:styles": "stylelint \"src/**/*.scss\" --syntax scss --config .stylelintrc.json",
     "lint:scripts": "eslint --config .eslintrc.json --ext js --ext jsx src __tests__",
     "lint": "concurrently \"npm run lint:styles\" \"npm run lint:scripts\"",
@@ -58,12 +58,15 @@
     "webpack-dev-server": "^3.11.2"
   },
   "dependencies": {
+    "favicons": "^6.2.2",
     "isomorphic-fetch": "^3.0.0",
     "prop-types": "^15.7.2",
     "ramda": "^0.27.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-markdown": "^6.0.2",
-    "react-router-dom": "^5.2.0"
+    "react-router-dom": "^5.2.0",
+    "rehype-raw": "^5.1.0",
+    "rehype-sanitize": "^4.0.0"
   }
 }

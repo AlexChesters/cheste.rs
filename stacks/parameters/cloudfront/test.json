@@ -6,6 +6,5 @@
   "Tags": {
     "Project": "personal-website",
     "Environment": "test"
-  },
-  "StackPolicy": {}
+  }
 }

@@ -8,8 +8,8 @@ Parameters:
     Description: Name of the S3 bucket where the static content lives
     Type: String
     AllowedValues:
-      - website-test-bucket-bucket-nexpgm1osjww
-      - website-test-bucket-bucket-nexpgm1osjww
+      - website-test-bucket-bucket-1xdczqfmnh8ti
+      - website-live-bucket-bucket-1j4uos3fih02k
 Resources:
   Distribution:
     Type: AWS::CloudFront::Distribution

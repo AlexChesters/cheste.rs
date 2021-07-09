@@ -5,9 +5,10 @@ Resources:
     Properties:
       CorsConfiguration:
         CorsRules:
-          - AllowedMethods: GET
+          - AllowedMethods:
+              - GET
             AllowedOrigins:
-              - 'http://localhost:8081'
+              - http://localhost:8081
       WebsiteConfiguration:
         IndexDocument: index.html
 

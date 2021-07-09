@@ -16,3 +16,32 @@ Resources:
             Effect: Allow
             Principal: "*"
             Resource: !Sub "${Bucket.Arn}/*"
+
+  BucketUploadRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Action:
+              - sts:AssumeRole
+              - sts:TagSession
+            Effect: Allow
+            Principal:
+              AWS: arn:aws:iam::008356366354:user/github-actions
+      Policies:
+        - PolicyName: website-bucket-upload-role
+          PolicyDocument:
+            Statement:
+              - Action:
+                  - s3:PutObject
+                  - s3:PutObjectAcl
+                  - s3:DeleteObject
+                Resource:
+                  - !Sub "${Bucket.Arn}/*"
+                Effect: Allow
+              - Action:
+                  - s3:ListBucket
+                Resource:
+                  - !GetAtt Bucket.Arn
+                Effect: Allow

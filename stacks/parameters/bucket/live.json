@@ -3,5 +3,15 @@
   "Tags": {
     "Project": "personal-website",
     "Environment": "live"
+  },
+  "StackPolicy": {
+    "Statement" : [
+      {
+        "Effect" : "Allow",
+        "Action" : "Update:*",
+        "Principal": "*",
+        "Resource" : "*"
+      }
+    ]
   }
 }

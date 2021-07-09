@@ -3,6 +3,11 @@ Resources:
   Bucket:
     Type: AWS::S3::Bucket
     Properties:
+      CorsConfiguration:
+        CorsRules:
+          - AllowedMethods: GET
+            AllowedOrigins:
+              - 'http://localhost:8081'
       WebsiteConfiguration:
         IndexDocument: index.html
 

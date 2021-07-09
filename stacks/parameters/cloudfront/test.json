@@ -6,5 +6,15 @@
   "Tags": {
     "Project": "personal-website",
     "Environment": "test"
+  },
+  "StackPolicy": {
+    "Statement" : [
+      {
+        "Effect" : "Allow",
+        "Action" : "Update:*",
+        "Principal": "*",
+        "Resource" : "*"
+      }
+    ]
   }
 }

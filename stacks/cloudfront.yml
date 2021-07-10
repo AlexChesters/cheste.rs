@@ -11,6 +11,23 @@ Parameters:
       - website-test-bucket-bucket-1xdczqfmnh8ti
       - website-live-bucket-bucket-1j4uos3fih02k
 Resources:
+  CachePolicy:
+    Type: AWS::CloudFront::CachePolicy
+    Properties:
+      CachePolicyConfig:
+        DefaultTTL: 60
+        MinTTL: 60
+        MaxTTL: 3600
+        Name: default-cache-policy
+        ParametersInCacheKeyAndForwardedToOrigin:
+          CookiesConfig:
+            CookieBehavior: none
+          HeadersConfig:
+            HeaderBehavior: whitelist
+            Headers:
+              - Access-Control-Request-Method
+              - Access-Control-Request-Headers
+              - Origin
   Distribution:
     Type: AWS::CloudFront::Distribution
     Properties:
@@ -23,11 +40,7 @@ Resources:
             ResponseCode: 404
             ResponsePagePath: /index.html
         DefaultCacheBehavior:
-          ForwardedValues:
-            QueryString: false
-          MinTTL: 60
-          DefaultTTL: 600
-          MaxTTL: 3600
+          CachePolicyId: !Ref CachePolicy
           TargetOriginId: BucketOrigin
           ViewerProtocolPolicy: redirect-to-https
         DefaultRootObject: index.html

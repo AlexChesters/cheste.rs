@@ -18,7 +18,7 @@ Resources:
         DefaultTTL: 60
         MinTTL: 0
         MaxTTL: 3600
-        Name: default-cache-policy
+        Name: DefaultCachePolicy
         ParametersInCacheKeyAndForwardedToOrigin:
           CookiesConfig:
             CookieBehavior: none

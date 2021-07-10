@@ -1,6 +1,12 @@
 Transform: AWS::Serverless-2016-10-31
 Description: CloudFront resources for my personal website
 Parameters:
+  Environment:
+    Description: The infrastructure environment
+    Type: String
+    AllowedValues:
+      - test
+      - live
   Domain:
     Description: Domain name to point at this environment
     Type: String
@@ -18,7 +24,7 @@ Resources:
         DefaultTTL: 60
         MinTTL: 0
         MaxTTL: 3600
-        Name: DefaultCachePolicy
+        Name: !Sub "${Environment}WebsiteDefaultCachePolicy"
         ParametersInCacheKeyAndForwardedToOrigin:
           CookiesConfig:
             CookieBehavior: none

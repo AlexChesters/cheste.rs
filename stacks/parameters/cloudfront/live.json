@@ -1,5 +1,6 @@
 {
   "Parameters": {
+    "Environment": "live",
     "Domain": "cheste.rs",
     "BucketName": "website-live-bucket-bucket-1j4uos3fih02k"
   },

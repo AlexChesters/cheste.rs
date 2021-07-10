@@ -2,10 +2,6 @@ import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import fetch from 'isomorphic-fetch'
 
-import Markdown from 'react-markdown'
-import rehypeRaw from 'rehype-raw'
-import rehypeSanitize from 'rehype-sanitize'
-
 import PageSkeleton from '../../components/page-skeleton'
 
 import './index.scss'
@@ -25,10 +21,10 @@ export default function BlogEntry () {
   const { entry } = useParams()
 
   async function fetchPost () {
-    const data = await import(`../../../blog/${entry}.md`)
-    const post = await fetch(data.default)
+    const res = await fetch(`https://cheste.rs/blog/${entry}.json`)
+    const post = await res.json()
 
-    setPost(await post.text())
+    setPost(post.html)
 
     const element = document.getElementById('blog-entry')
     appendTabIndexToChildren(element)
@@ -43,9 +39,7 @@ export default function BlogEntry () {
   return (
     <PageSkeleton>
       <section className='blog-entry' id='blog-entry'>
-        <Markdown rehypePlugins={[rehypeRaw, rehypeSanitize]}>
-          {post}
-        </Markdown>
+        <div dangerouslySetInnerHTML={{ __html: post }} />
       </section>
     </PageSkeleton>
   )

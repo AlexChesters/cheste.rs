@@ -1,44 +1,18 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 
 import PageSkeleton from '../../components/page-skeleton'
 
 import './index.scss'
 
 export default function BlogPreview () {
-  const blogData = [
-    {
-      identifier: '008',
-      title: 'AWS Re:Invent 2019 - An Overview'
-    },
-    {
-      identifier: '007',
-      title: 'How my website is built'
-    },
-    {
-      identifier: '006',
-      title: 'AWS Re:Invent - Top Tips'
-    },
-    {
-      identifier: '005',
-      title: 'AWS Re:Invent 2018 - An Overview'
-    },
-    {
-      identifier: '004',
-      title: 'Creating your own web server in Node.js'
-    },
-    {
-      identifier: '003',
-      title: 'Creating an AWS Budget with alarms'
-    },
-    {
-      identifier: '002',
-      title: 'Hack Week December 2017 - Who\'s This?'
-    },
-    {
-      identifier: '001',
-      title: 'Hack Week May 2017 - AFK'
-    }
-  ]
+  const [blogData, setBlogData] = useState([])
+
+  useEffect(async () => {
+    const res = await window.fetch('https://cheste.rs/blog/overview.json')
+    const data = await res.json()
+
+    setBlogData(data)
+  }, [])
 
   return (
     <PageSkeleton>
@@ -53,6 +27,7 @@ export default function BlogPreview () {
                     <td>
                       <a href={`/blog/${entry.identifier}`} className='post__table-item--title' tabIndex={0}>
                         <h1>{entry.title}</h1>
+                        <p>{entry.preview}</p>
                       </a>
                     </td>
                   </tr>

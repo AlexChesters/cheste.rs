@@ -22,12 +22,15 @@ Resources:
         ParametersInCacheKeyAndForwardedToOrigin:
           CookiesConfig:
             CookieBehavior: none
+          EnableAcceptEncodingGzip: true
           HeadersConfig:
             HeaderBehavior: whitelist
             Headers:
               - Access-Control-Request-Method
               - Access-Control-Request-Headers
               - Origin
+          QueryStringsConfig:
+            QueryStringBehavior: none
   Distribution:
     Type: AWS::CloudFront::Distribution
     Properties:

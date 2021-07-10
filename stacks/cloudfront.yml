@@ -16,7 +16,7 @@ Resources:
     Properties:
       CachePolicyConfig:
         DefaultTTL: 60
-        MinTTL: 60
+        MinTTL: 0
         MaxTTL: 3600
         Name: default-cache-policy
         ParametersInCacheKeyAndForwardedToOrigin:
